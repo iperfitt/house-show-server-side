@@ -14,7 +14,7 @@ import com.ianperfitt.Entities.Event;
 import com.ianperfitt.Services.EventService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://house-show-server-side.herokuapp.com")
 public class EventController {
 
 	@Autowired
