@@ -20,6 +20,11 @@ public class EventController {
 	@Autowired
 	private EventService es;
 
+	@RequestMapping("/")
+	public String hello() {
+		return "Hello";
+	}
+
 	@RequestMapping("/allevents")
 	public List<Event> getAllEvents() {
 		return es.getAllEvents();
