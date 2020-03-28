@@ -15,13 +15,13 @@ import com.ianperfitt.Entities.Event;
 import com.ianperfitt.Services.EventService;
 
 @RestController
-@CrossOrigin(origins = "https://house-show-client-side.herokuapp.com")
+@CrossOrigin(origins = { "https://house-show-client-side.herokuapp.com", "http://localhost:4200" })
 public class EventController {
 
 	@Autowired
 	private EventService es;
 
-	@RequestMapping("/allevents")
+	@GetMapping("/allevents")
 	public List<Event> getAllEvents() {
 		return es.getAllEvents();
 	}
