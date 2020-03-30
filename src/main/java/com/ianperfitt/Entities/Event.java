@@ -4,11 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /*
- * Users entity mapped to users table in database.
+ * Event entity mapped to event table in database.
  * 
  */
 
@@ -21,17 +20,18 @@ public class Event {
 	 * generating primary keys for persisted User entities.
 	 */
 
+//	@SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
+//	@GeneratedValue(generator = "user_id_seq", strategy = GenerationType.AUTO)
 	@Id
-	@SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "user_id_seq", strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String name;
 
 	private String location;
-	
+
 	private String genre;
-	
+
 	public String getGenre() {
 		return genre;
 	}
