@@ -1,5 +1,6 @@
 package com.ianperfitt.Entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Event {
 //	@GeneratedValue(generator = "user_id_seq", strategy = GenerationType.AUTO)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition = "serial")
 	private Long id;
 
 	private String name;
