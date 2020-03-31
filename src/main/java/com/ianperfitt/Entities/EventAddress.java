@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "event_address")
+@Table(name = "eventaddress")
 public class EventAddress {
 
 	@Id
@@ -20,7 +20,7 @@ public class EventAddress {
 	@OneToOne(mappedBy = "address")
 	private Event event;
 
-	private String house_number;
+	private String housenumber;
 
 	private String street;
 
@@ -49,11 +49,11 @@ public class EventAddress {
 	}
 
 	public String getHouse_number() {
-		return house_number;
+		return housenumber;
 	}
 
-	public void setHouse_number(String house_number) {
-		this.house_number = house_number;
+	public void setHouse_number(String housenumber) {
+		this.housenumber = housenumber;
 	}
 
 	public String getStreet() {
@@ -103,7 +103,7 @@ public class EventAddress {
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((event == null) ? 0 : event.hashCode());
-		result = prime * result + ((house_number == null) ? 0 : house_number.hashCode());
+		result = prime * result + ((housenumber == null) ? 0 : housenumber.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
@@ -135,10 +135,10 @@ public class EventAddress {
 				return false;
 		} else if (!event.equals(other.event))
 			return false;
-		if (house_number == null) {
-			if (other.house_number != null)
+		if (housenumber == null) {
+			if (other.housenumber != null)
 				return false;
-		} else if (!house_number.equals(other.house_number))
+		} else if (!housenumber.equals(other.housenumber))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -165,7 +165,7 @@ public class EventAddress {
 
 	@Override
 	public String toString() {
-		return "EventAddress [id=" + id + ", event=" + event + ", house_number=" + house_number + ", street=" + street
+		return "EventAddress [id=" + id + ", event=" + event + ", house_number=" + housenumber + ", street=" + street
 				+ ", city=" + city + ", state=" + state + ", country=" + country + ", zipcode=" + zipcode + "]";
 	}
 
@@ -174,7 +174,7 @@ public class EventAddress {
 		super();
 		this.id = id;
 		this.event = event;
-		this.house_number = house_number;
+		this.housenumber = house_number;
 		this.street = street;
 		this.city = city;
 		this.state = state;

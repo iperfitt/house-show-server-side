@@ -1,6 +1,5 @@
 package com.ianperfitt.Entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,8 +29,8 @@ public class Event {
 
 	private String name;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	@OneToOne
+	@JoinColumn(name = "addressid", referencedColumnName="id")
 	private EventAddress address;
 
 	private String genre;
