@@ -26,9 +26,12 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public void createEvent(Event e) {
-		EventAddress ea = earepo.save(e.getAddress());
-		e.setAddress(ea);
-		er.save(e);
+		EventAddress ea = e.getEventAddress();
+		Event event = e;
+		event.setEventAddress(ea);
+		er.save(event);
+		System.out.println(event.toString());
+//		er.save(e);
 	}
 
 	@Override

@@ -3,22 +3,14 @@ package com.ianperfitt.Entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "eventaddress")
 public class EventAddress {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
-
-	@OneToOne(mappedBy = "address")
-	private Event event;
+	private Long addressId;
 
 	private String housenumber;
 
@@ -32,30 +24,27 @@ public class EventAddress {
 
 	private String zipcode;
 
-	public Long getId() {
-		return id;
+	@Id
+	@GeneratedValue
+	@Column(name = "address_id")
+	public Long getAddressId() {
+		return addressId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setAddressId(Long addressId) {
+		this.addressId = addressId;
 	}
 
-	public Event getEvent() {
-		return event;
-	}
-
-	public void setEvent(Event event) {
-		this.event = event;
-	}
-
-	public String getHouse_number() {
+	@Column(name = "address_housenumber", nullable = false, length = 250)
+	public String getHousenumber() {
 		return housenumber;
 	}
 
-	public void setHouse_number(String housenumber) {
+	public void setHousenumber(String housenumber) {
 		this.housenumber = housenumber;
 	}
 
+	@Column(name = "address_street", nullable = false, length = 50)
 	public String getStreet() {
 		return street;
 	}
@@ -64,6 +53,7 @@ public class EventAddress {
 		this.street = street;
 	}
 
+	@Column(name = "address_city", nullable = false, length = 50)
 	public String getCity() {
 		return city;
 	}
@@ -72,6 +62,7 @@ public class EventAddress {
 		this.city = city;
 	}
 
+	@Column(name = "address_state", nullable = false, length = 50)
 	public String getState() {
 		return state;
 	}
@@ -80,6 +71,7 @@ public class EventAddress {
 		this.state = state;
 	}
 
+	@Column(name = "address_country", nullable = false, length = 50)
 	public String getCountry() {
 		return country;
 	}
@@ -88,6 +80,7 @@ public class EventAddress {
 		this.country = country;
 	}
 
+	@Column(name = "address_zipcode", nullable = false, length = 50)
 	public String getZipcode() {
 		return zipcode;
 	}
@@ -96,85 +89,11 @@ public class EventAddress {
 		this.zipcode = zipcode;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((country == null) ? 0 : country.hashCode());
-		result = prime * result + ((event == null) ? 0 : event.hashCode());
-		result = prime * result + ((housenumber == null) ? 0 : housenumber.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((state == null) ? 0 : state.hashCode());
-		result = prime * result + ((street == null) ? 0 : street.hashCode());
-		result = prime * result + ((zipcode == null) ? 0 : zipcode.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EventAddress other = (EventAddress) obj;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
-			return false;
-		if (country == null) {
-			if (other.country != null)
-				return false;
-		} else if (!country.equals(other.country))
-			return false;
-		if (event == null) {
-			if (other.event != null)
-				return false;
-		} else if (!event.equals(other.event))
-			return false;
-		if (housenumber == null) {
-			if (other.housenumber != null)
-				return false;
-		} else if (!housenumber.equals(other.housenumber))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (state == null) {
-			if (other.state != null)
-				return false;
-		} else if (!state.equals(other.state))
-			return false;
-		if (street == null) {
-			if (other.street != null)
-				return false;
-		} else if (!street.equals(other.street))
-			return false;
-		if (zipcode == null) {
-			if (other.zipcode != null)
-				return false;
-		} else if (!zipcode.equals(other.zipcode))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "EventAddress [id=" + id + ", event=" + event + ", house_number=" + housenumber + ", street=" + street
-				+ ", city=" + city + ", state=" + state + ", country=" + country + ", zipcode=" + zipcode + "]";
-	}
-
-	public EventAddress(Long id, Event event, String house_number, String street, String city, String state,
-			String country, String zipcode) {
+	public EventAddress(Long addressId, String housenumber, String street, String city, String state, String country,
+			String zipcode) {
 		super();
-		this.id = id;
-		this.event = event;
-		this.housenumber = house_number;
+		this.addressId = addressId;
+		this.housenumber = housenumber;
 		this.street = street;
 		this.city = city;
 		this.state = state;

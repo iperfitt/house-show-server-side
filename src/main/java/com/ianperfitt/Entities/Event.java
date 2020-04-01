@@ -1,12 +1,12 @@
 package com.ianperfitt.Entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /*
@@ -22,64 +22,62 @@ public class Event {
 	 * Tells Hibernate to use the SQL sequence provided in the database when
 	 * generating primary keys for persisted User entities.
 	 */
+
+	private Long eventId;
+
+	private String eventName;
+
+	private EventAddress eventAddress;
+
+	private String eventGenre;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(columnDefinition = "serial", name = "id")
-	private Long id;
-
-	private String name;
-
-	@OneToOne
-	@JoinColumn(name = "addressid", referencedColumnName="id")
-	private EventAddress address;
-
-	private String genre;
-
-	public String getGenre() {
-		return genre;
+	@GeneratedValue
+	@Column(name = "event_id")
+	public Long getEventId() {
+		return eventId;
 	}
 
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
 	}
 
-	public String getName() {
-		return name;
+	@Column(name = "event_name", nullable = false, length = 100)
+	public String getEventName() {
+		return eventName;
 	}
 
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", name=" + name + ", address=" + address + ", genre=" + genre + "]";
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "event_address")
+	public EventAddress getEventAddress() {
+		return eventAddress;
 	}
 
-	public EventAddress getAddress() {
-		return address;
+	public void setEventAddress(EventAddress eventAddress) {
+		this.eventAddress = eventAddress;
 	}
 
-	public void setAddress(EventAddress address) {
-		this.address = address;
+	@Column(name = "event_genre", nullable = false, length = 100)
+	public String getEventGenre() {
+		return eventGenre;
 	}
 
-	public Event(Long id, String name, EventAddress address, String genre) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.address = address;
-		this.genre = genre;
+	public void setEventGenre(String eventGenre) {
+		this.eventGenre = eventGenre;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((eventAddress == null) ? 0 : eventAddress.hashCode());
+		result = prime * result + ((eventGenre == null) ? 0 : eventGenre.hashCode());
+		result = prime * result + ((eventId == null) ? 0 : eventId.hashCode());
+		result = prime * result + ((eventName == null) ? 0 : eventName.hashCode());
 		return result;
 	}
 
@@ -92,31 +90,46 @@ public class Event {
 		if (getClass() != obj.getClass())
 			return false;
 		Event other = (Event) obj;
-		if (address == null) {
-			if (other.address != null)
+		if (eventAddress == null) {
+			if (other.eventAddress != null)
 				return false;
-		} else if (!address.equals(other.address))
+		} else if (!eventAddress.equals(other.eventAddress))
 			return false;
-		if (genre == null) {
-			if (other.genre != null)
+		if (eventGenre == null) {
+			if (other.eventGenre != null)
 				return false;
-		} else if (!genre.equals(other.genre))
+		} else if (!eventGenre.equals(other.eventGenre))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (eventId == null) {
+			if (other.eventId != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!eventId.equals(other.eventId))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (eventName == null) {
+			if (other.eventName != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!eventName.equals(other.eventName))
 			return false;
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Event [eventId=" + eventId + ", eventName=" + eventName + ", eventAddress=" + eventAddress
+				+ ", eventGenre=" + eventGenre + "]";
+	}
+
+	public Event(Long eventId, String eventName, EventAddress eventAddress, String eventGenre) {
+		super();
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventAddress = eventAddress;
+		this.eventGenre = eventGenre;
+	}
+
 	public Event() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }
