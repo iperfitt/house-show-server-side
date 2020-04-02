@@ -106,4 +106,10 @@ public class EventAddress {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String toString() {
+		return "EventAddress [addressId=" + addressId + ", housenumber=" + housenumber + ", street=" + street
+				+ ", city=" + city + ", state=" + state + ", country=" + country + ", zipcode=" + zipcode + "]";
+	}
+
 }

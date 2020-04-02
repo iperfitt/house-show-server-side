@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ianperfitt.DTO.EventDTO;
 import com.ianperfitt.Entities.Event;
 import com.ianperfitt.Entities.EventAddress;
-import com.ianperfitt.Repo.EventAddressRepo;
 import com.ianperfitt.Repo.EventRepo;
 
 @Service
@@ -16,22 +16,32 @@ public class EventServiceImpl implements EventService {
 	@Autowired
 	private EventRepo er;
 
-	@Autowired
-	private EventAddressRepo earepo;
-
 	@Override
 	public List<Event> getAllEvents() {
 		return er.findAll();
 	}
 
+	public EventAddress parseAddress(String address) {
+		EventAddress ea = new EventAddress();
+		String[] addressArr = address.split(",");
+		ea.setAddressId(Integer.toUnsignedLong(0));
+		ea.setCity(addressArr[1].substring(1));
+		ea.setHousenumber(addressArr[0].substring(0, addressArr[0].indexOf(" ")));
+		ea.setStreet(addressArr[0].substring(addressArr[0].indexOf(" ") + 1));
+		ea.setCountry(addressArr[3].substring(1));
+		ea.setState(addressArr[2].trim().split(" ")[0]);
+		ea.setZipcode(addressArr[2].trim().split(" ")[1]);
+		return ea;
+	}
+
 	@Override
-	public void createEvent(Event e) {
-		EventAddress ea = e.getEventAddress();
-		Event event = e;
+	public void createEvent(EventDTO eDTO) {
+		Event event = new Event();
+		event.setEventId(eDTO.getEventId());
+		event.setEventName(eDTO.getEventName());
+		EventAddress ea = parseAddress(eDTO.getEventAddress());
 		event.setEventAddress(ea);
 		er.save(event);
-		System.out.println(event.toString());
-//		er.save(e);
 	}
 
 	@Override

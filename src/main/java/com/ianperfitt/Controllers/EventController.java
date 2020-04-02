@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ianperfitt.DTO.EventDTO;
 import com.ianperfitt.Entities.Event;
 import com.ianperfitt.Services.EventService;
 
@@ -25,8 +26,8 @@ public class EventController {
 	}
 
 	@RequestMapping("/createevent")
-	public void createEvent(@RequestBody Event e) {
-		es.createEvent(e);
+	public void createEvent(@RequestBody EventDTO eDTO) {
+		es.createEvent(eDTO);
 	}
 
 }
