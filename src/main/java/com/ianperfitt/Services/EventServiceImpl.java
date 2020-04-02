@@ -39,6 +39,7 @@ public class EventServiceImpl implements EventService {
 		Event event = new Event();
 		event.setEventId(eDTO.getEventId());
 		event.setEventName(eDTO.getEventName());
+		event.setEventGenre(eDTO.getEventGenre());
 		EventAddress ea = parseAddress(eDTO.getEventAddress());
 		event.setEventAddress(ea);
 		er.save(event);
