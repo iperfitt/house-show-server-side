@@ -21,6 +21,8 @@ public class EventServiceImpl implements EventService {
 		return er.findAll();
 	}
 
+	//Event address is a comma delimited string in the following format:
+	//"housenumber, street, city, state, county, zipcode"
 	public EventAddress parseAddress(String address) {
 		EventAddress ea = new EventAddress();
 		String[] addressArr = address.split(",");
@@ -42,6 +44,7 @@ public class EventServiceImpl implements EventService {
 		event.setEventGenre(eDTO.getEventGenre());
 		EventAddress ea = parseAddress(eDTO.getEventAddress());
 		event.setEventAddress(ea);
+		event.setEventType(eDTO.getEventType());
 		er.save(event);
 	}
 

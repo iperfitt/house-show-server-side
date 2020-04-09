@@ -5,7 +5,8 @@ CREATE TABLE event (
 	event_id int AUTO_INCREMENT PRIMARY KEY,
 	event_name VARCHAR(200),
 	event_address int,
-	event_genre VARCHAR(200)
+	event_genre VARCHAR(200),
+	event_type VARCHAR(200)
 );
 
 CREATE TABLE eventaddress (

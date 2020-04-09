@@ -10,6 +10,16 @@ public class EventDTO {
 
 	private String eventGenre;
 
+	private String eventType;
+
+	public String getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
+	}
+
 	public Long getEventId() {
 		return eventId;
 	}

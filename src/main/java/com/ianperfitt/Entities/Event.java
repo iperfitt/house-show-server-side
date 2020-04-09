@@ -31,6 +31,8 @@ public class Event {
 
 	private String eventGenre;
 
+	private String eventType;
+
 	@Id
 	@GeneratedValue
 	@Column(name = "event_id")
@@ -70,12 +72,22 @@ public class Event {
 		this.eventGenre = eventGenre;
 	}
 
+	@Column(name = "event_type", nullable = false, length = 100)
+	public String getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((eventAddress == null) ? 0 : eventAddress.hashCode());
 		result = prime * result + ((eventGenre == null) ? 0 : eventGenre.hashCode());
+		result = prime * result + ((eventType == null) ? 0 : eventType.hashCode());
 		result = prime * result + ((eventId == null) ? 0 : eventId.hashCode());
 		result = prime * result + ((eventName == null) ? 0 : eventName.hashCode());
 		return result;
@@ -110,21 +122,27 @@ public class Event {
 				return false;
 		} else if (!eventName.equals(other.eventName))
 			return false;
+		if (eventType == null) {
+			if (other.eventType != null)
+				return false;
+		} else if (!eventType.equals(other.eventType))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Event [eventId=" + eventId + ", eventName=" + eventName + ", eventAddress=" + eventAddress
-				+ ", eventGenre=" + eventGenre + "]";
+				+ ", eventGenre=" + eventGenre + ", eventType=" + eventType + "]";
 	}
 
-	public Event(Long eventId, String eventName, EventAddress eventAddress, String eventGenre) {
+	public Event(Long eventId, String eventName, EventAddress eventAddress, String eventGenre, String eventType) {
 		super();
 		this.eventId = eventId;
 		this.eventName = eventName;
 		this.eventAddress = eventAddress;
 		this.eventGenre = eventGenre;
+		this.eventType = eventType;
 	}
 
 	public Event() {
