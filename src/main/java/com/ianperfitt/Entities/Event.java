@@ -35,7 +35,7 @@ public class Event {
 	private String eventType;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	@Column(name = "event_id")
 	public Long getEventId() {
 		return eventId;
