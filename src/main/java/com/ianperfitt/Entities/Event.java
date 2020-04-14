@@ -33,6 +33,8 @@ public class Event {
 
 	private String eventType;
 
+	private Image eventFlyer;
+
 	@Id
 	@GeneratedValue
 	@Column(name = "event_id")
@@ -81,6 +83,16 @@ public class Event {
 		this.eventType = eventType;
 	}
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "event_flyer")
+	public Image getEventFlyer() {
+		return eventFlyer;
+	}
+
+	public void setEventFlyer(Image eventFlyer) {
+		this.eventFlyer = eventFlyer;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,6 +102,7 @@ public class Event {
 		result = prime * result + ((eventType == null) ? 0 : eventType.hashCode());
 		result = prime * result + ((eventId == null) ? 0 : eventId.hashCode());
 		result = prime * result + ((eventName == null) ? 0 : eventName.hashCode());
+		result = prime * result + ((eventFlyer == null) ? 0 : eventFlyer.hashCode());
 		return result;
 	}
 
@@ -106,6 +119,11 @@ public class Event {
 			if (other.eventAddress != null)
 				return false;
 		} else if (!eventAddress.equals(other.eventAddress))
+			return false;
+		if (eventFlyer == null) {
+			if (other.eventFlyer != null)
+				return false;
+		} else if (!eventFlyer.equals(other.eventFlyer))
 			return false;
 		if (eventGenre == null) {
 			if (other.eventGenre != null)
@@ -133,16 +151,18 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [eventId=" + eventId + ", eventName=" + eventName + ", eventAddress=" + eventAddress
-				+ ", eventGenre=" + eventGenre + ", eventType=" + eventType + "]";
+				+ ", eventGenre=" + eventGenre + ", eventType=" + eventType + ", eventFlyer=" + eventFlyer + "]";
 	}
 
-	public Event(Long eventId, String eventName, EventAddress eventAddress, String eventGenre, String eventType) {
+	public Event(Long eventId, String eventName, EventAddress eventAddress, String eventGenre, String eventType,
+			Image eventFlyer) {
 		super();
 		this.eventId = eventId;
 		this.eventName = eventName;
 		this.eventAddress = eventAddress;
 		this.eventGenre = eventGenre;
 		this.eventType = eventType;
+		this.eventFlyer = eventFlyer;
 	}
 
 	public Event() {

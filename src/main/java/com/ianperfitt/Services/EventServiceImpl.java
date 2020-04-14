@@ -1,13 +1,16 @@
 package com.ianperfitt.Services;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ianperfitt.DTO.EventDTO;
 import com.ianperfitt.Entities.Event;
 import com.ianperfitt.Entities.EventAddress;
+import com.ianperfitt.Entities.Image;
 import com.ianperfitt.Repo.EventRepo;
 
 @Service
@@ -21,8 +24,8 @@ public class EventServiceImpl implements EventService {
 		return er.findAll();
 	}
 
-	//Event address is a comma delimited string in the following format:
-	//"housenumber, street, city, state, county, zipcode"
+	// Event address is a comma delimited string in the following format:
+	// "housenumber, street, city, state, county, zipcode"
 	public EventAddress parseAddress(String address) {
 		EventAddress ea = new EventAddress();
 		String[] addressArr = address.split(",");
@@ -37,7 +40,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void createEvent(EventDTO eDTO) {
+	public void createEvent(MultipartFile flyer, EventDTO eDTO) throws IOException {
 		Event event = new Event();
 		event.setEventId(eDTO.getEventId());
 		event.setEventName(eDTO.getEventName());
@@ -45,6 +48,9 @@ public class EventServiceImpl implements EventService {
 		EventAddress ea = parseAddress(eDTO.getEventAddress());
 		event.setEventAddress(ea);
 		event.setEventType(eDTO.getEventType());
+		Image img = new Image(Integer.toUnsignedLong(0), flyer.getOriginalFilename(), flyer.getContentType(),
+				flyer.getBytes());
+		event.setEventFlyer(img);
 		er.save(event);
 	}
 

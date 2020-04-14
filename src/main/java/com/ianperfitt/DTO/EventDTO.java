@@ -12,14 +12,6 @@ public class EventDTO {
 
 	private String eventType;
 
-	public String getEventType() {
-		return eventType;
-	}
-
-	public void setEventType(String eventType) {
-		this.eventType = eventType;
-	}
-
 	public Long getEventId() {
 		return eventId;
 	}
@@ -52,10 +44,18 @@ public class EventDTO {
 		this.eventGenre = eventGenre;
 	}
 
+	public String getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
+	}
+
 	@Override
 	public String toString() {
 		return "EventDTO [eventId=" + eventId + ", eventName=" + eventName + ", eventAddress=" + eventAddress
-				+ ", eventGenre=" + eventGenre + "]";
+				+ ", eventGenre=" + eventGenre + ", eventType=" + eventType + "]";
 	}
 
 }

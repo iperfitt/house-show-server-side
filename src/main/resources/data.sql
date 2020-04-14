@@ -1,12 +1,14 @@
 DROP TABLE IF EXISTS event;
 DROP TABLE IF EXISTS eventaddress;
+DROP TABLE IF EXISTS eventflyer;
 
 CREATE TABLE event (
 	event_id int AUTO_INCREMENT PRIMARY KEY,
 	event_name VARCHAR(200),
 	event_address int,
 	event_genre VARCHAR(200),
-	event_type VARCHAR(200)
+	event_type VARCHAR(200),
+	event_flyer int
 );
 
 CREATE TABLE eventaddress (
@@ -19,4 +21,10 @@ CREATE TABLE eventaddress (
 	address_zipcode VARCHAR(200)
 );
 
+CREATE TABLE eventflyer (
+	flyer_id int AUTO_INCREMENT,
+	flyer_name VARCHAR(200),
+	flyer_type VARCHAR(200),
+	event_flyer clob
+);
   
