@@ -1,5 +1,7 @@
 package com.ianperfitt.DTO;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class EventDTO {
 
 	private Long eventId;
@@ -11,6 +13,8 @@ public class EventDTO {
 	private String eventGenre;
 
 	private String eventType;
+
+	MultipartFile flyer;
 
 	public Long getEventId() {
 		return eventId;
@@ -52,10 +56,17 @@ public class EventDTO {
 		this.eventType = eventType;
 	}
 
+	public MultipartFile getFlyer() {
+		return flyer;
+	}
+
+	public void setFlyer(MultipartFile flyer) {
+		this.flyer = flyer;
+	}
+
 	@Override
 	public String toString() {
 		return "EventDTO [eventId=" + eventId + ", eventName=" + eventName + ", eventAddress=" + eventAddress
-				+ ", eventGenre=" + eventGenre + ", eventType=" + eventType + "]";
+				+ ", eventGenre=" + eventGenre + ", eventType=" + eventType + ", flyer=" + flyer + "]";
 	}
-
 }

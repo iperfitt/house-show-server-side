@@ -6,71 +6,75 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "eventflyer")
 public class Image {
 
+	private Long flyerid;
+
+	private String flyerName;
+
+	private String flyerType;
+
+	private byte[] eventFlyer;
+
 	@Id
-	@Column(name = "flyer_id")
 	@GeneratedValue
-	private Long id;
+	@Column(name = "flyer_id")
+	public Long getId() {
+		return flyerid;
+	}
+
+	public void setId(Long flyerid) {
+		this.flyerid = flyerid;
+	}
 
 	@Column(name = "flyer_name")
-	private String name;
+	public String getflyerName() {
+		return flyerName;
+	}
+
+	public void setflyerName(String flyerName) {
+		this.flyerName = flyerName;
+	}
 
 	@Column(name = "flyer_type")
-	private String type;
-
-	@Lob
-	@Column(name = "event_flyer")
-	private byte[] flyer;
-
-	public Long getId() {
-		return id;
+	public String getflyerType() {
+		return flyerType;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setflyerType(String flyerType) {
+		this.flyerType = flyerType;
 	}
 
-	public String getName() {
-		return name;
-	}
+//	@Lob
+//	@Column(name = "event_flyer", columnDefinition = "blob")
+//	public byte[] getFlyer() {
+//		return eventFlyer;
+//	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public byte[] getFlyer() {
-		return flyer;
-	}
-
-	public void setFlyer(byte[] flyer) {
-		this.flyer = flyer;
+	public void setFlyer(byte[] eventFlyer) {
+		this.eventFlyer = eventFlyer;
 	}
 
 	@Override
 	public String toString() {
-		return "Image [id=" + id + ", name=" + name + ", type=" + type + ", flyer=" + Arrays.toString(flyer) + "]";
+		return "Image [id=" + flyerid + ", flyerName=" + flyerName + ", flyerType=" + flyerType + ", flyer="
+				+ Arrays.toString(eventFlyer) + "]";
 	}
 
-	public Image(Long id, String name, String type, byte[] flyer) {
+	public Image(String flyerName, String flyerType, byte[] eventFlyer) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.type = type;
-		this.flyer = flyer;
+		this.flyerName = flyerName;
+		this.flyerType = flyerType;
+		this.eventFlyer = eventFlyer;
+	}
+
+	public Image() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }
