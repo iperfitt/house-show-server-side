@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ianperfitt.DTO.EventDTO;
 import com.ianperfitt.Entities.Event;
@@ -38,7 +39,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void createEvent(EventDTO eDTO) throws IOException {
+	public void createEvent(EventDTO eDTO, MultipartFile photo) throws IOException {
 		Event event = new Event();
 		event.setEventId(eDTO.getEventId());
 		event.setEventName(eDTO.getEventName());
@@ -46,6 +47,8 @@ public class EventServiceImpl implements EventService {
 		EventAddress ea = parseAddress(eDTO.getEventAddress());
 		event.setEventAddress(ea);
 		event.setEventType(eDTO.getEventType());
+		
+		System.out.println("your photo is the following = " + photo);
 
 //		Image img = new Image(eDTO.getFlyer().getOriginalFilename(), eDTO.getFlyer().getContentType(),
 //				eDTO.getFlyer().getBytes());

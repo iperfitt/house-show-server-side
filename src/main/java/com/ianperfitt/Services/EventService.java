@@ -12,6 +12,6 @@ public interface EventService {
 
 	List<Event> getAllEvents();
 
-	void createEvent(EventDTO e) throws IOException;
+	void createEvent(EventDTO e, MultipartFile options) throws IOException;
 
 }
