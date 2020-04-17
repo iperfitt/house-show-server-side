@@ -39,16 +39,15 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void createEvent(EventDTO eDTO, MultipartFile photo) throws IOException {
+	public void createEvent(MultipartFile photo) throws IOException {
 		Event event = new Event();
+		EventDTO eDTO = new EventDTO();
 		event.setEventId(eDTO.getEventId());
 		event.setEventName(eDTO.getEventName());
 		event.setEventGenre(eDTO.getEventGenre());
 		EventAddress ea = parseAddress(eDTO.getEventAddress());
 		event.setEventAddress(ea);
 		event.setEventType(eDTO.getEventType());
-		
-		System.out.println("your photo is the following = " + photo);
 
 //		Image img = new Image(eDTO.getFlyer().getOriginalFilename(), eDTO.getFlyer().getContentType(),
 //				eDTO.getFlyer().getBytes());

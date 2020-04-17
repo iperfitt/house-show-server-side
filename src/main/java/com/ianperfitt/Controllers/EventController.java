@@ -29,17 +29,16 @@ public class EventController {
 	}
 
 //	@RequestMapping("/createevent")
-//	public void createEvent(@RequestBody EventDTO eDTO, @RequestParam("myFile") MultipartFile photo)
-//			throws IOException {
+//	public void createEvent(@RequestBody EventDTO eDTO) throws IOException {
 //		System.out.println("Event Data Transfer Object" + eDTO);
 //		//es.createEvent(eDTO);
 //	}
-	
+
 	@RequestMapping("/createevent")
-	public void createEvent(@RequestParam("myFile") MultipartFile photo)
+	public void createEvent(@RequestParam("myFile") MultipartFile photo, @RequestParam("event") EventDTO event)
 			throws IOException {
 		System.out.println("Photo" + photo);
-		//es.createEvent(eDTO);
+		// es.createEvent(eDTO);
 	}
 
 }
